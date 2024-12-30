@@ -72,7 +72,7 @@ const Interpreter = () => {
     formData.append("video", recordedVideo, "recorded-video.mp4");
 
     try {
-      const response = await fetch("http://0.0.0.0:8000/process_video", {
+      const response = await fetch("https://0.0.0.0:8000/process_video", {
         method: "POST",
         body: formData,
       });
@@ -92,7 +92,7 @@ const Interpreter = () => {
     formData.append("video", uploadedVideo, uploadedVideo.name);
 
     try {
-      const response = await fetch("http://0.0.0.0:8000/process_video", {
+      const response = await fetch("https://0.0.0.0:8000/process_video", {
         method: "POST",
         body: formData,
       });
