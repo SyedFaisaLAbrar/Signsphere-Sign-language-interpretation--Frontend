@@ -1,0 +1,81 @@
+/* Accessibility Section */
+.accessibility-section {
+    background: #ffffff;
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .accessibility-content {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  /* Left Column - Text */
+  .text-column {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .text-column h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .text-column h2 span {
+    color: #7f5aff; /* Highlighted purple */
+  }
+  
+  .text-column p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .accessibility-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .accessibility-list li {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+  }
+  
+  .accessibility-list li::before {
+    content: '✓';
+    color: #7f5aff;
+    position: absolute;
+    left: 0;
+  }
+  
+  /* Learn More Button */
+  .learn-more-btn {
+    display: inline-block;
+    background-color: #7f5aff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #654be7;
+  }
+  
+  /* Right Column - Image */
+  .image-column img {
+    max-width: 100%;
+    border-radius: 10px;
+
+  }
+  

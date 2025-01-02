@@ -1,0 +1,86 @@
+/* Hero Section Container */
+.hero-section {
+  position: relative;
+  height: 600px;
+  color: white;
+  display: flex;
+  align-items: flex-end; /* Align content at the bottom */
+  justify-content: flex-end; /* Align content to the right */
+  overflow: hidden;
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Background Image */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.7); /* Dim background */
+}
+
+/* Hero Content Container */
+.hero-content {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align all elements to the right */
+  width: 55%; /* Occupy 60% of the width */
+  text-align: left; /* Align text to the right */
+  margin-bottom: 90px; /* Add spacing from the bottom edge */
+}
+
+/* Row for Heading and Button */
+.row {
+  display: flex;
+  gap: 20px; /* Space between heading and button */
+  margin-bottom: 10px; /* Space between rows */
+}
+
+/* Hero Text */
+.row h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Hero Description */
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* Hero Button */
+.hero-button {
+  background-color: #5b67f8;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 30px; /* Make button more rounded */
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  text-decoration: none; /* Remove underline */
+  display: inline-flex; /* Ensure proper alignment for icon */
+  align-items: center;
+  gap: 10px; /* Add spacing between text and icon */
+}
+
+.hero-button:hover {
+  background-color: #4958c9;
+}
+
+.hero-button img {
+  background-color: white;
+  color: #5b67f8;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow */
+}

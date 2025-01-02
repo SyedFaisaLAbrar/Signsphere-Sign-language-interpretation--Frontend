@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Header.css">
+    <link rel="stylesheet" href="Section1.css">
+    <link rel="stylesheet" href="Section2.css">
+    <link rel="stylesheet" href="Section3.css">
+    <link rel="stylesheet" href="Section4.css">
+    <link rel="stylesheet" href="Section5.css">
+    <link rel="stylesheet" href="Section6.css">
+    <link rel="stylesheet" href="Footer.css">
+</head>
+<body>
+    
+    <div className="header">
+        {/* Green Top Strip */}
+        <div className="top-strip">
+          <p>Signapse AI | Your AI-powered Video Translation Solution</p>
+          <a href="#learn-more" className="strip-link">Learn More</a>
+        </div>
+  
+        {/* Navbar */}
+        <nav className="navbar">
+          <div className="logo">Signapse</div>
+          <ul className="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#customers">Customers</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#about">About Us</a></li>
+          </ul>
+          <button className="nav-button">Sign Up</button>
+        </nav>
+      </div>
+
+      <div className="hero-section">
+        {/* Background Section */}
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1>Video Translation Platform</h1>
+            <p>
+              Transform your video content with SignStudio – the first-of-its-kind platform to
+              translate, dub, and sign language videos.
+            </p>
+            <button className="hero-button">Learn More</button>
+          </div>
+          <div className="hero-image">
+            <img src={productImage} alt="Product Preview" />
+          </div>
+        </div>
+        {/* Background Image */}
+        <img src={heroImage} alt="Background" className="hero-bg" />
+      </div>
+
+      <div className="simplify-section">
+        <div className="simplify-container">
+          {/* Left Image */}
+          <div className="simplify-image">
+            <img src={simplifyImage} alt="Simplify Video Translation" />
+          </div>
+  
+          {/* Right Text Content */}
+          <div className="simplify-content">
+            <span className="new-launch">🚀 New Launch</span>
+            <h2>Simplify Your Video Translation Today</h2>
+            <p>
+              Our groundbreaking platform makes it easier than ever to translate videos into multiple
+              languages, offering a seamless and quick sign-up experience.
+            </p>
+            <button className="simplify-button">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mission-section">
+        <h2 className="mission-heading">The Mission</h2>
+        <div className="mission-container">
+          {/* Left Box */}
+          <div className="mission-box mission-box-left">
+            <h3>Introducing our real-time Generative AI sign language translation software</h3>
+            <p>
+              Designed to break down communication barriers instantly, our platform delivers accurate
+              translations for sign language users, organizations, and communities.
+            </p>
+            <button className="mission-button">More about us</button>
+          </div>
+  
+          {/* Middle Box */}
+          <div className="mission-box mission-box-middle">
+            <h3>Over</h3>
+            <h1>5,000</h1>
+            <p>Interactions with our translation tools.</p>
+          </div>
+  
+          {/* Right Box */}
+          <div className="mission-box mission-box-right">
+            <h1>7m</h1>
+            <p>Platform-wide user interactions.</p>
+            <img src={missionImage} alt="User Interaction" />
+          </div>
+        </div>
+      </div>
+
+      <div className="process-section">
+        <h2 className="process-heading">The Process</h2>
+        <div className="process-content">
+          {/* Step 1 - Full width */}
+          <div className="process-step process-step-main">
+            <div className="step-icon">
+              <img src={stepIcon1} alt="Dataset Icon" />
+            </div>
+            <div className="step-text">
+              <h3>Largest dataset of sign language</h3>
+              <p>
+                Signapse has collected the largest sign language dataset to deliver the most accurate
+                translations as quickly as possible.
+              </p>
+            </div>
+          </div>
+  
+          {/* Remaining Steps */}
+          <div className="process-steps-grid">
+            {/* Step 2 */}
+            <div className="process-step">
+              <img src={stepIcon2} alt="View extracts" />
+              <h4>View extracts</h4>
+            </div>
+  
+            {/* Step 3 */}
+            <div className="process-step">
+              <img src={stepIcon3} alt="Professional training" />
+              <h4>Professional training</h4>
+            </div>
+  
+            {/* Step 4 */}
+            <div className="process-step">
+              <img src={stepIcon4} alt="Integration" />
+              <h4>Integration</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="accessibility-section">
+        <div className="accessibility-content">
+          <div className="text-column">
+            <h2>Enhance your organisation's <span>accessibility</span></h2>
+            <p>
+              Empower Deaf people with our cutting-edge Generative AI sign language translation.
+              Perfect for public space announcements, videos, and websites, our technology ensures
+              accurate and engaging communication that makes a meaningful impact.
+            </p>
+            <ul className="accessibility-list">
+              <li>Public spaces, websites, and video translation.</li>
+              <li>Fast and cost-effective AI translation software.</li>
+              <li>Developed for organisations and businesses.</li>
+            </ul>
+            <a href="#learn-more" className="learn-more-btn">Read & learn</a>
+          </div>
+          <div className="image-column">
+            <img src={accessibilityImage} alt="Accessibility" />
+          </div>
+        </div>
+      </div>
+      <div className="partnership-section">
+        <div className="partnership-content">
+          <h2>Partnerships</h2>
+          <p>
+            We share values, peerless quality of service, and clarity of vision that includes cultural
+            and linguistic ownership of sign by the Deaf community.
+          </p>
+          <div className="logos-container">
+            <img src={logo1} alt="Partner 1" />
+            <img src={logo2} alt="Partner 2" />
+            <img src={logo3} alt="Partner 3" />
+            <img src={logo4} alt="Partner 4" />
+            <img src={logo5} alt="Partner 5" />
+          </div>
+          <a href="#become-partner" className="partner-btn">Become a partner</a>
+        </div>
+      </div>
+
+      <footer className="footer-section">
+        <div className="footer-content">
+          <div className="footer-top">
+            <div className="footer-col">
+              <h3>Address</h3>
+              <p>
+                123 Main Street<br />
+                London, United Kingdom<br />
+                info@company.com
+              </p>
+            </div>
+            <div className="footer-col">
+              <h3>Products</h3>
+              <ul>
+                <li>SignStudio Platform</li>
+                <li>Video Translation</li>
+                <li>Solutions for Partners</li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h3>Menu</h3>
+              <ul>
+                <li>Pricing</li>
+                <li>Contact Us</li>
+                <li>About Us</li>
+                <li>Privacy Policy</li>
+              </ul>
+            </div>
+          </div>
+  
+          <div className="footer-bottom">
+            <p>© 2024 Company Name. All Rights Reserved.</p>
+            <div className="social-icons">
+              <a href="#"><i className="fab fa-facebook-f"></i></a>
+              <a href="#"><i className="fab fa-twitter"></i></a>
+              <a href="#"><i className="fab fa-linkedin-in"></i></a>
+              <a href="#"><i className="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    
+</body>
+</html>
