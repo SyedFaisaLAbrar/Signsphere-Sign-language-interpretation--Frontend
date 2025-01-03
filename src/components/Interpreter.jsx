@@ -2,12 +2,10 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import { useDropzone } from "react-dropzone";
 
-
 const Interpreter = () => {
   const [translation, setTranslation] = useState("Translation will appear here.");
   const [isRecording, setIsRecording] = useState(false);
-  // const [isProcessing, setIsProcessing] = useState(false);
-  const [countdown, setCountdown] = useState(null); // Timer hidden by default
+  const [countdown, setCountdown] = useState(null);
   const [recordedVideo, setRecordedVideo] = useState(null);
   const [uploadedVideo, setUploadedVideo] = useState(null); // For uploaded video
   const [isWebcamOn, setIsWebcamOn] = useState(true);
@@ -18,6 +16,10 @@ const Interpreter = () => {
       setUploadedVideo(acceptedFiles[0]);
       setIsWebcamOn(false); // Turn off webcam
     }
+  };
+
+  const handleDeleteUploadedVideo = () => {
+    setUploadedVideo(null); // Reset the uploaded video
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -66,7 +68,6 @@ const Interpreter = () => {
   };
 
   const handleProcessRecordedVideo = async () => {
-    
     if (!recordedVideo) return;
 
     const formData = new FormData();
@@ -108,8 +109,6 @@ const Interpreter = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      
-
       <div className="px-6 py-10 grid grid-cols-4 gap-12">
         {/* Recording Section */}
         <div className="bg-gradient-to-r col-span-2 from-white via-gray-100 to-gray-200 p-6 rounded-xl shadow-lg backdrop-blur-md bg-opacity-30">
@@ -132,40 +131,42 @@ const Interpreter = () => {
             />
           </div>
           <div className="flex space-x-4">
-          {/* Record Button */}
-          <button
-            onClick={handleRecord}
-            disabled={isRecording}
-            className={`w-1/2 py-3 rounded-full shadow-lg transform transition-all duration-200 ${
-              isRecording ? "bg-gray-500 text-white cursor-not-allowed" : "bg-black text-white hover:bg-gray-800"
-            }`}
-          >
-            {isRecording ? "Recording..." : "Record"}
-          </button>
+            {/* Record Button */}
+            <button
+              onClick={handleRecord}
+              disabled={isRecording}
+              className={`w-1/2 py-3 rounded-full shadow-lg transform transition-all duration-200 ${
+                isRecording ? "bg-gray-500 text-white cursor-not-allowed" : "bg-black text-white hover:bg-gray-800"
+              }`}
+            >
+              {isRecording ? "Recording..." : "Record"}
+            </button>
 
-          {/* Process Recorded Video Button */}
-          <button
-            onClick={handleProcessRecordedVideo}
-            disabled={!recordedVideo}
-            className={`w-1/2 py-3 rounded-full shadow-lg transform transition-all duration-200 ${
-              !recordedVideo ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-white text-gray-800 hover:bg-gray-100"
-            }`}
-          >
-            Process Recorded Video
-          </button>
-        </div>
-                    
-          
+            {/* Process Recorded Video Button */}
+            <button
+              onClick={handleProcessRecordedVideo}
+              disabled={!recordedVideo}
+              className={`w-1/2 py-3 rounded-full shadow-lg transform transition-all duration-200 ${
+                !recordedVideo ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "bg-white text-gray-800 hover:bg-gray-100"
+              }`}
+            >
+              Process Recorded Video
+            </button>
+          </div>
         </div>
 
         {/* Drag and Drop Section */}
-        {/* Drag and Drop Section with GIF */}
         <div className="col-span-1 flex flex-col items-center space-y-4">
           {/* Square GIF Section */}
-          <div className="w-full h-1/3  rounded-lg flex items-center justify-center ">
+          <div className="w-full h-1/3 rounded-lg flex items-center justify-center">
             {/* Replace with GIF */}
-            <iframe src="https://giphy.com/embed/F3q9rS4hISE4R3WcWT" width="200" height="200" class="giphy-embed" allowFullScreen></iframe>
-           
+            <iframe
+              src="https://giphy.com/embed/F3q9rS4hISE4R3WcWT"
+              width="200"
+              height="200"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
           </div>
 
           {/* Drag and Drop Section */}
@@ -177,7 +178,20 @@ const Interpreter = () => {
             <p className="text-gray-600">Drag and drop a video here, or click to upload</p>
           </div>
 
-          {/* Button */}
+          {/* Display uploaded video name and delete button */}
+          {uploadedVideo && (
+            <div className="flex items-center space-x-2 mt-4">
+              <p className="text-green-500 font-semibold">{uploadedVideo.name}</p>
+              <button
+                onClick={handleDeleteUploadedVideo}
+                className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center"
+              >
+                <span className="text-xl">&times;</span> {/* X icon */}
+              </button>
+            </div>
+          )}
+
+          {/* Button to process uploaded video */}
           <button
             onClick={handleProcessUploadedVideo}
             disabled={!uploadedVideo}
@@ -188,8 +202,6 @@ const Interpreter = () => {
             Process Uploaded Video
           </button>
         </div>
-
-
 
         {/* Translation Section */}
         <div className="bg-gradient-to-r from-white via-gray-100 to-gray-200 p-6 rounded-xl shadow-lg backdrop-blur-md bg-opacity-30">

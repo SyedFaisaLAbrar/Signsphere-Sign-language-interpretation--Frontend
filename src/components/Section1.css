@@ -84,3 +84,42 @@
   border-radius: 50%;
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow */
 }
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  
+  /* Hero Section Container */
+  .hero-section {
+    height: 500px; /* Adjust height for mobile */
+    padding: 15px; /* Reduce padding */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content */
+  }
+
+  /* Hero Content Container */
+  .hero-content {
+    width: 80%; /* Full width */
+    align-items: center; /* Center content */
+    text-align: center; /* Center text */
+    margin-top: 195px; /* Reduce bottom margin */
+  }
+
+  /* Row for Heading and Button */
+  .row {
+    flex-direction: column; /* Stack heading and button vertically */
+    align-items: center; /* Center align */
+    gap: 10px; /* Space between heading and button */
+  }
+
+  /* Hero Button */
+  .hero-button {
+    font-size: 1rem; /* Adjust button size */
+    padding: 10px 20px; /* Adjust padding */
+    width: 100%; /* Full width */
+  }
+
+  .hero-button img {
+    width: 28px; /* Adjust icon size */
+    height: 28px; /* Adjust icon size */
+  }
+}
