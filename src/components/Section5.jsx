@@ -7,17 +7,15 @@ const Section5 = () => {
     <div className="accessibility-section">
       <div className="accessibility-content">
         <div className="text-column">
-          <h2>Enhance your organisation's <span>accessibility</span></h2>
+          <h2>Enhance your business's <span>accessibility</span></h2>
           <p>
-            Empower Deaf people with our cutting-edge Generative AI sign language translation.
-            Perfect for public space announcements, videos, and websites, our technology ensures
-            accurate and engaging communication that makes a meaningful impact.
+            Empower Deaf people with our cutting-edge AI Pakistan sign language translation.
+            <br/>
+            <br/>
+            Perfect to <span class="highlighted">expand your reach</span> by giving them an opportunity to interact freely, 
+            our technology <span class="highlighted">ensures accurate and engaging communication</span> that makes a meaningful impact.
           </p>
-          <ul className="accessibility-list">
-            <li>Public spaces, websites, and video translation.</li>
-            <li>Fast and cost-effective AI translation software.</li>
-            <li>Developed for organisations and businesses.</li>
-          </ul>
+          
           <a href="#learn-more" className="learn-more-btn">Read & learn</a>
         </div>
         <div className="image-column">

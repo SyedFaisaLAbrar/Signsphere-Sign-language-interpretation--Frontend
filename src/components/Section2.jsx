@@ -11,7 +11,7 @@ const Section2 = () => {
         {/* Left Image */}
         <div className="simplify-image">
           
-        <video width="600" height="400" controls={showControls}
+        <video width="500" height="360" controls={showControls}
           onMouseEnter={() => setShowControls(false)} 
           onMouseLeave={() => setShowControls(false)}   loop autoPlay muted>
           <source src={simplifyImage} type="video/mp4" />
@@ -25,10 +25,10 @@ const Section2 = () => {
           <span className="new-launch">🚀 New Launch</span>
           <h2>Simplify your traveling experience</h2>
           <p>
-            Our groundbreaking platform makes it easier than ever to translate videos you sign
-            languages, offering a seamless and quick communuication.
+            Our groundbreaking platform makes it easier than ever to translate realtime 
+            pakistan sign language, offering a seamless and quick communuication.
           </p>
-          <button className="simplify-button">Sign Up</button>
+          
         </div>
       </div>
     </div>

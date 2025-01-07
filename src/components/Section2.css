@@ -1,6 +1,6 @@
 /* Section Container */
 .simplify-section {
-    background-color: #ffffff; /* Light background */
+    background: #f7f8ff; /* Light gradient */ /* Light background */
     display: flex;
     justify-content: center;
     padding: 60px 20px;

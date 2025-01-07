@@ -10,6 +10,7 @@ import Section6 from './components/Section6';
 import Footer from './components/Footer';
 import Interpreter from './components/Interpreter'; // Add correct paths for these components
 import Dictionary from './components/Dictionary';
+import AboutUs from './components/AboutUs';
 
 function App() {
   return (
@@ -21,16 +22,17 @@ function App() {
             element={
               <div>
                 <Section1 />
-                <Section2 />
                 <Section3 />
-                <Section4 />
                 <Section5 />
+                <Section2 />
+                <Section4 />
                 <Section6 />
               </div>
             }
           />
           <Route path="/interpreter" element={<Interpreter />} />
           <Route path="/dictionary" element={<Dictionary />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
         <Footer /> {/* Shared footer */}
       </Router>

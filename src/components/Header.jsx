@@ -31,9 +31,9 @@ const Header = () => {
         <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <li><a href="#features">Features</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#customers">Customers</a></li>
+          <li><a href="/interpreter">Interpreter</a></li>
           <li><a href="/dictionary">Dictionary</a></li>
-          <li><a href="#about">About Us</a></li>
+          <li><a href="/aboutus">About Us</a></li>
           
         </ul>
 

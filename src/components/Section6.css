@@ -25,18 +25,35 @@
   
   .logos-container {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 40px;
+    align-items: center;
+    justify-content: start; /* Start position for scrolling */
+    overflow: hidden; /* Hides logos moving out of view */
+    white-space: nowrap; /* Prevents logos from wrapping */
+    position: relative;
+    gap: 0; /* Ensures no gaps between the logos */
+  }
+  
+  .logos-container .logos-wrapper {
+    display: flex;
+    animation: scroll-logos 40s linear infinite; /* Infinite animation */
   }
   
   .logos-container img {
-    max-width: 150px;
-    height: auto;
-    filter: grayscale(100%);
-    transition: filter 0.3s, transform 0.3s;
+    max-width: 190px;
+    height: 5vh;
+    margin-right: 40px; /* Adds spacing between logos */
   }
+  
+  /* Keyframes for scrolling effect */
+  @keyframes scroll-logos {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
   
   .logos-container img:hover {
     filter: none;

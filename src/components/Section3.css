@@ -1,6 +1,6 @@
 /* Mission Section Container */
 .mission-section {
-    background: #eceffc; /* Light gradient */
+    background: white; /* Light gradient */
     padding: 60px 20px;
     text-align: center;
   }
@@ -11,6 +11,7 @@
     margin-bottom: 40px;
     color: #333;
   }
+  
   
   /* Container for Boxes */
   .mission-container {
@@ -26,7 +27,6 @@
     flex: 1;
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
   }
   
@@ -55,46 +55,12 @@
     cursor: pointer;
   }
   
-  .mission-button:hover {
-    background-color: #4958c9;
-  }
-  
-  /* Middle Box */
-  .mission-box-middle {
-    background: #e5ffe8; /* Green tint */
-    text-align: center;
-  }
-  
-  .mission-box-middle h3 {
-    font-size: 1.5rem;
-    color: #2f8f00;
-  }
-  
-  .mission-box-middle h1 {
-    font-size: 3rem;
-    margin: 10px 0;
-    color: #2f8f00;
-  }
-  
   /* Right Box */
   .mission-box-right {
-    background: #f0f4ff; /* Blue tint */
+    background: white; /* Blue tint */
     text-align: center;
   }
   
-  .mission-box-right h1 {
-    font-size: 3rem;
-    color: #4958c9;
-  }
-  
-  .mission-box-right p {
-    margin: 10px 0 20px;
-    color: #555;
-  }
-  
-  .mission-box-right img {
-    max-width: 80%;
-    border-radius: 10px;
-    margin-top: 10px;
-  }
-  
+.highlighted{
+  color:#5b67f8;
+}

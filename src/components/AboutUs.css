@@ -1,0 +1,83 @@
+/* AboutUs Page Styling */
+.aboutus-container {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  height: 90vh;
+}
+
+.video-contain {
+  position: absolute;
+  top: 0;
+  right:0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none; /* Prevent interaction with the video */
+}
+
+.background-video {
+  position: absolute;
+  top: 55%;
+  right: 50%;
+  transform: translateY(-50%);
+  width: 100%; /* Increase this value to make the globe bigger */
+  height: auto; /* Maintain the aspect ratio */
+  opacity: 0.5;
+}
+
+.aboutus-header {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top:5rem;
+}
+
+.aboutus-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+
+}
+
+.aboutus-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.aboutus-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.aboutus-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+  .aboutus-header h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    color: #7f5aff;
+
+  }
+  
+  .aboutus-header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .aboutus-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+
+  
