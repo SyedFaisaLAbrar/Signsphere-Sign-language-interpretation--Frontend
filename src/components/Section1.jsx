@@ -1,7 +1,7 @@
 import React from 'react';
 import './Section1.css';
 // import heroImage from '../assets/hero-image.png'; // Replace with actual image path
-import productImage from '../assets/product-image-2.png'; // Replace with product UI image
+import productImage from '../assets/product-image.png'; // Replace with product UI image
 import InterIcon from '../assets/tap.png'; // Replace with product UI image
 
 const Section1 = () => {
