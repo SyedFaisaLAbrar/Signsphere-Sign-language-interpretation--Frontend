@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Interpreter from './components/Interpreter'; // Add correct paths for these components
 import Dictionary from './components/Dictionary';
 import AboutUs from './components/AboutUs';
+import SignSphereInsights from './components/SignSphereInsights';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/interpreter" element={<Interpreter />} />
           <Route path="/dictionary" element={<Dictionary />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/signsphereinsights" element={<SignSphereInsights />} />
         </Routes>
         <Footer /> {/* Shared footer */}
       </Router>

@@ -33,6 +33,18 @@ const Section6 = () => {
             <img src={logo3} alt="Partner 3" />
             <img src={logo4} alt="Partner 4" />
             <img src={logo5} alt="Partner 5" />
+            {/* Duplicate logos for seamless effect  */}
+            <img src={logo1} alt="Partner 1" />
+            <img src={logo2} alt="Partner 2" />
+            <img src={logo3} alt="Partner 3" />
+            <img src={logo4} alt="Partner 4" />
+            <img src={logo5} alt="Partner 5" />
+            {/* Duplicate logos for seamless effect  */}
+            <img src={logo1} alt="Partner 1" />
+            <img src={logo2} alt="Partner 2" />
+            <img src={logo3} alt="Partner 3" />
+            <img src={logo4} alt="Partner 4" />
+            <img src={logo5} alt="Partner 5" />
           </div>
         </div>
         

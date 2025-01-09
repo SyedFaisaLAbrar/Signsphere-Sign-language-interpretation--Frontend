@@ -30,7 +30,7 @@ const Header = () => {
         {/* Nav Links (visible when menu is open or on larger screens) */}
         <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="/signsphereinsights">Model Insights</a></li>
           <li><a href="/interpreter">Interpreter</a></li>
           <li><a href="/dictionary">Dictionary</a></li>
           <li><a href="/aboutus">About Us</a></li>
