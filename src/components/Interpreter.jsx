@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
 import { useDropzone } from "react-dropzone";
 import './interpreter.css';
+
 
 const Interpreter = () => {
   const [translation, setTranslation] = useState("Translation will appear here.");
@@ -70,54 +72,41 @@ const Interpreter = () => {
     }, 9000); // Record for 9 seconds
   };
 
-  const handleProcessRecordedVideo = async () => {
-    if (!recordedVideo) return;
+  const processVideo = async (videoFile) => {
+    if (!videoFile) return;
+  
     setLoading(true); // Start loader
-    setTranslation(""); // Clear any previous translation
+    setTranslation(""); // Clear previous translation
     const formData = new FormData();
-    formData.append("video", recordedVideo, "recorded-video.mp4");
-    console.log(recordedVideo);
-
+    formData.append("file", videoFile, videoFile.name || "recorded-video.mp4");
+  
     try {
-      const response = await fetch("http://localhost:8000/process_video", {
+      const response = await fetch("http://127.0.0.1:8000/process_video", {
         method: "POST",
         body: formData,
       });
-
+  
       setTranslation("Processing...");
-
-      const result = await response.json();
-      setTranslation(result.translation || "Translation could not be processed.");
+  
+      if (response.ok) {
+        const result = await response.json();
+        setTranslation(result.action || "Translation could not be processed.");
+      } else {
+        setTranslation("Error processing video. Please try again.");
+      }
     } catch (error) {
+      console.error("Error:", error);
       setTranslation("Error processing video. Please try again.");
-    }
-    finally {
+    } finally {
       setLoading(false); // Stop loader
     }
   };
-
-  const handleProcessUploadedVideo = async () => {
-    if (!uploadedVideo) return;
-    setLoading(true); // Start loader
-    const formData = new FormData();
-    formData.append("video", uploadedVideo, uploadedVideo.name);
-
-    try {
-      const response = await fetch("http://localhost:8000/process_video", {
-        method: "POST",
-        body: formData,
-      });
-      setTranslation("Processing...");
-
-      const result = await response.json();
-      setTranslation(result.translation || "Translation could not be processed.");
-    } catch (error) {
-      setTranslation("Error processing video. Please try again.");
-    }
-    finally {
-      setLoading(false); // Stop loader
-    }
-  };
+  
+  const handleProcessRecordedVideo = () => processVideo(recordedVideo);
+  
+  const handleProcessUploadedVideo = () => processVideo(uploadedVideo);
+  
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen glassy-container ">
@@ -223,12 +212,19 @@ const Interpreter = () => {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Text Translation</h2>
           <div className="w-full h-64 bg-gray-100 rounded-lg p-4 flex items-center justify-center text-center mb-4">
             {loading ? (
-                <ClipLoader color="#4A5568" size={40} />
-              ) : (
-                <p className="text-gray-700 text-lg">{translation || "No translation yet."}</p>
-              )}
+              <ClipLoader color="#4A5568" size={40} />
+            ) : (
+              <p className="text-gray-700 text-lg">{translation || "No translation yet."}</p>
+            )}
           </div>
+          <button
+            onClick={() => navigate('/guide')} // Navigates to the guide page
+            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+          >
+            Guide Him/Her
+          </button>
         </div>
+
       </div>
     </div>
   );
