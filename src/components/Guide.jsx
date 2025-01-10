@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-import './Guide.css';
+import "./Guide.css";
 
 const GuidePage = () => {
   const location = useLocation();
@@ -10,9 +9,8 @@ const GuidePage = () => {
   const [directions, setDirections] = useState("");
   const [handSignResponse, setHandSignResponse] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [geoError, setGeoError] = useState("");  // To handle geolocation errors
+  const [geoError, setGeoError] = useState("");
 
-  // Fetch place name from passed state
   useEffect(() => {
     if (location.state?.signName) {
       setPlaceName(location.state.signName);
@@ -20,76 +18,9 @@ const GuidePage = () => {
     }
   }, [location.state]);
 
-  // Function to handle nearby location search and response generation
-  const handleSearch = async (signName) => {
-    setLoading(true);
-    try {
-      // Get the current device location
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            const radius = 4800; // Approx 3 miles in meters
-
-            // Use Nominatim API to search for nearby locations based on query
-            const nominatimResponse = await axios.get(
-              `https://nominatim.openstreetmap.org/search`,
-              {
-                params: {
-                  q: signName,  // Search for the place name (e.g., ATM)
-                  format: "json",
-                  lat: latitude,
-                  lon: longitude,
-                  radius: radius,
-                  limit: 5,  // Limit the results to a reasonable number
-                },
-              }
-            );
-
-            // Check if there are nearby locations
-            if (nominatimResponse.data && nominatimResponse.data.length > 0) {
-              const directions = nominatimResponse.data
-                .map((place) => {
-                  const distance = calculateDistance(latitude, longitude, place.lat, place.lon);
-                  return `Go ${distance} meters to the ATM at ${place.display_name}`;
-                })
-                .join(", ");
-              setDirections(directions);
-
-              // Generate hand sign response for the directions (dummy example)
-              const responseWords = ["Go", "West", "200", "meters"];  // Replace with dynamic response
-              const handSignPaths = responseWords.map((word) =>
-                word
-                  .toLowerCase()
-                  .split("")
-                  .map((letter) => `../assets/alphabets/${letter}.png`) // Path to images of hand signs
-              );
-              setHandSignResponse(handSignPaths);
-            } else {
-              setDirections("No location found within 3 miles.");
-            }
-          },
-          (error) => {
-            // Handle geolocation error
-            setGeoError("Unable to retrieve your location.");
-            console.error(error);
-          }
-        );
-      } else {
-        setGeoError("Geolocation is not supported by this browser.");
-      }
-    } catch (error) {
-      console.error("Error fetching nearby locations:", error);
-      setDirections("Error fetching directions.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Function to calculate distance between two latitude/longitude points (in meters)
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371e3; // Earth radius in meters
+  // Haversine formula to calculate distance between two lat/lon points
+  const haversine = (lat1, lon1, lat2, lon2) => {
+    const R = 6371e3; // Earth's radius in meters
     const φ1 = (lat1 * Math.PI) / 180;
     const φ2 = (lat2 * Math.PI) / 180;
     const Δφ = ((lat2 - lat1) * Math.PI) / 180;
@@ -97,11 +28,89 @@ const GuidePage = () => {
 
     const a =
       Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+      Math.cos(φ1) * Math.cos(φ2) *
+      Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = R * c; // Result in meters
-    return Math.round(distance);
+    return R * c; // Returns the distance in meters
+  };
+
+  // Calculate direction
+  const calculateDirection = (lat1, lon1, lat2, lon2) => {
+    const y = Math.sin(lon2 - lon1) * Math.cos(lat2);
+    const x =
+      Math.cos(lat1) * Math.sin(lat2) -
+      Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+    const brng = Math.atan2(y, x);
+    const degrees = (brng * 180) / Math.PI;
+    const direction = (degrees + 360) % 360; // Normalize to [0, 360)
+
+    // Determine cardinal direction
+    if (direction >= 0 && direction < 45) return "north";
+    if (direction >= 45 && direction < 135) return "east";
+    if (direction >= 135 && direction < 225) return "south";
+    if (direction >= 225 && direction < 315) return "west";
+    return "north"; // Default case
+  };
+
+  const handleSearch = async (searchQuery) => {
+    setLoading(true);
+    setGeoError("");
+    try {
+      if (!navigator.geolocation) {
+        throw new Error("Geolocation is not supported by this browser.");
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async ({ coords: { latitude, longitude } }) => {
+          let sign = searchQuery.toLowerCase();
+          const query = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:5000,${latitude},${longitude})[amenity=${sign}];out;`;
+
+          try {
+            const response = await fetch(query);
+            const data = await response.json();
+            const spots = data.elements;
+
+            if (spots.length > 0) {
+              const nearestSpot = spots[0]; // First spot returned
+              const spotLat = nearestSpot.lat;
+              const spotLon = nearestSpot.lon;
+
+              // Calculate the distance and direction
+              const distance = haversine(latitude, longitude, spotLat, spotLon);
+              const direction = calculateDirection(latitude, longitude, spotLat, spotLon);
+
+              setDirections(
+                `Nearest ${searchQuery}: ${Math.round(distance)} meters ${direction}`
+              );
+
+              // Create hand-sign response
+              const responseWords = `${Math.round(distance)} meters ${direction}`.split(/\s+/);
+              const handSignPaths = responseWords.map((word) =>
+                word
+                  .toLowerCase()
+                  .split("")
+                  .map((letter) => `/assets/alphabets/${letter}.png`)
+              );
+              setHandSignResponse(handSignPaths);
+            } else {
+              setDirections(`No ${searchQuery} found nearby.`);
+            }
+          } catch (error) {
+            console.error("Error fetching data from Overpass API:", error);
+            setDirections("Failed to generate content.");
+          }
+        },
+        (error) => {
+          setGeoError("Failed to fetch your location. Please try again.");
+        }
+      );
+    } catch (error) {
+      console.error("Error fetching nearby places:", error);
+      setGeoError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,15 +124,12 @@ const GuidePage = () => {
         <div className="text-red-600 text-lg">{geoError}</div>
       ) : (
         <div>
-          {/* Directions Section */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-700 mb-2">
               Directions to Nearby Location:
             </h3>
             <p className="text-gray-700">{directions || "No directions found."}</p>
           </div>
-
-          {/* Hand-Sign Response Section */}
           <div>
             <h3 className="text-lg font-semibold text-gray-700 mb-2">
               Response for Deaf:
@@ -136,7 +142,7 @@ const GuidePage = () => {
                       key={imgIndex}
                       src={imgPath}
                       alt="Hand Sign"
-                      className="w-10 h-10"
+                      className="w-20 h-20"
                     />
                   ))}
                 </div>
