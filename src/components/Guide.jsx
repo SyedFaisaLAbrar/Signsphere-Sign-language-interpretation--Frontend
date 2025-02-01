@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import "./Guide.css";
+// const images = import.meta.glob('/src/assets/alphabets/*.png');
+import Compass from "./Compass";
 
 const GuidePage = () => {
   const location = useLocation();
@@ -90,8 +92,11 @@ const GuidePage = () => {
                 word
                   .toLowerCase()
                   .split("")
-                  .map((letter) => `/assets/alphabets/${letter}.png`)
+                  .map((letter) => `${process.env.PUBLIC_URL}/assets/alphabets/${letter}.png`)
+                  
+                  // .map((letter) => require(`/assets/alphabets/${letter}.png`))
               );
+              
               setHandSignResponse(handSignPaths);
             } else {
               setDirections(`No ${searchQuery} found nearby.`);
@@ -116,7 +121,7 @@ const GuidePage = () => {
   return (
     <div className="bg-gradient-to-r from-white via-gray-100 to-gray-200 p-6 rounded-xl shadow-lg backdrop-blur-md bg-opacity-30">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        Location: <span className="highlighted">{placeName || "N/A"}</span>
+        Traveler asked for nearest : <span className="highlighted">{placeName || "N/A"}</span>
       </h2>
       {loading ? (
         <ClipLoader color="#4A5568" size={40} />
@@ -124,30 +129,42 @@ const GuidePage = () => {
         <div className="text-red-600 text-lg">{geoError}</div>
       ) : (
         <div>
-          <div className="mb-6">
+          <div className="w-full bg-green-100 p-4 mb-6 rounded-md">
             <h3 className="text-lg font-semibold text-gray-700 mb-2">
               Directions to Nearby Location:
             </h3>
             <p className="text-gray-700">{directions || "No directions found."}</p>
           </div>
+
           <div>
             <h3 className="text-lg font-semibold text-gray-700 mb-2">
               Response for Deaf:
             </h3>
-            <div className="flex space-x-4">
-              {handSignResponse.map((word, wordIndex) => (
-                <div key={wordIndex} className="flex space-x-2">
-                  {word.map((imgPath, imgIndex) => (
-                    <img
-                      key={imgIndex}
-                      src={imgPath}
-                      alt="Hand Sign"
-                      className="w-20 h-20"
-                    />
-                  ))}
-                </div>
-              ))}
+
+            <div className="w-full bg-green-100 py-6">
+  <div className="flex justify-center space-x-8">
+    {handSignResponse.map((word, wordIndex) => (
+      <div key={wordIndex} className="flex flex-col items-center space-x-2">
+        <div className="flex space-x-2">
+          {word.map((imgPath, imgIndex) => (
+            <div key={imgIndex} className="flex flex-col items-center">
+              <img
+                src={imgPath}
+                alt="Hand Sign"
+                className="w-18 h-24 rounded-md shadow"
+              />
+              <span className="text-sm text-gray-700 mt-1">
+                {imgPath.split("/").pop().split(".")[0].toUpperCase()}
+              </span>
             </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
           </div>
         </div>
       )}

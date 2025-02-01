@@ -40,7 +40,7 @@ const AboutUs = () => {
     <div className="aboutus-card">
       <h2>Why Choose Us</h2>
       <p>
-        With the largest dataset of sign language, state-of-the-art AI models, and a passionate
+        With our prossessable dataset of pakistan sign language, state-of-the-art AI models, and a passionate
         team, SignSphere delivers the most accurate, reliable, and user-friendly sign language
         translation services.
       </p>

@@ -3,6 +3,7 @@ import { Box, Typography, Grid } from "@mui/material";
 import { Line } from "react-chartjs-2";
 import modelImage from '../assets/data-model.png';
 import v81_metrices_img from '../assets/v81_ploting.png';
+import v91_metrices_img from '../assets/v91.png';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -114,12 +115,54 @@ const SignSphereInsights = () => {
                 style={{ width: "90%", height: "auto", borderRadius: "10px" }}
                 />
             </Grid>
+            </Grid>
+        </Grid>
+        </Grid>
+      <Grid container spacing={3} sx={{ width: "80%", height: "100%", marginLeft: "20px" }}>
+        {/* Left Column: Model Image and Name */}
+        <Grid
+            item
+            xs={2}  // Increase width for the model image
+            sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRight: "1px solid #ccc",  // Add border for tabular effect
+            padding: 2,
 
-            {/* Chart Section */}
+            }}
+        >
+            <img
+            src={modelImage}
+            alt="Model"
+            style={{ width: "80%", height: "auto", borderRadius: "10px" }}
+            />
+            <Typography variant="h6" fontWeight="bold" sx={{ textAlign: "center" }}>
+            SSP 2.0
+            </Typography>
+        </Grid>
+
+        {/* Right Column: Metrics and v81 Images */}
+        <Grid
+            item
+            xs={10}  // Adjust right column width
+            sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",  // Right align items
+            justifyContent: "flex-start",  // Align top
+            padding: 2,
+            }}
+        >
+            <Grid container direction="row" spacing={3} sx={{ width: "100%" }}>
+            {/* Bottom Section: v81 Image */}
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Box sx={{ width: "90%", display: "flex", justifyContent: "center" }}>
-                <Line data={chartData} options={chartOptions} />
-                </Box>
+                <img
+                src={v91_metrices_img}
+                alt="v81 Metrics"
+                style={{ width: "90%", height: "auto", borderRadius: "10px" }}
+                />
             </Grid>
             </Grid>
         </Grid>

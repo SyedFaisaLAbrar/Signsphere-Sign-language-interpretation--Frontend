@@ -2,10 +2,12 @@
 .glassy-container {
     background: rgba(73, 41, 255, 0.096); /* Dark background with transparency */
     backdrop-filter: blur(10px); /* Apply the blur effect behind the glass */
-    border-radius: 10px;
     padding: 20px;
     position: relative;
     z-index: 1;
     overflow: hidden;
   }
  
+  .highlighted{
+    color:#5b67f8;
+  }
